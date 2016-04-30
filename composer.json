@@ -1,0 +1,28 @@
+{
+    "name": "weikit/yii2-base",
+    "description": "The weikit base components for Yii2.",
+    "keywords": ["weikit", "yii2", "base"],
+    "homepage": "https://github.com/weikit/yii2-base",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Long Zhang",
+            "email": "callme-z@qq.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/weikit/yii2-base/issues?state=open",
+        "wiki": "https://github.com/weikit/yii2-base/wiki/",
+        "source": "https://github.com/weikit/yii2-base"
+    },
+    "require": {
+        "yiisoft/yii2": "*",
+
+        "danielstjules/stringy": "~2.2"
+    },
+    "autoload": {
+        "files": ["helpers.php"],
+        "psr-4": {"weikit\\base\\": ""}
+    }
+}
