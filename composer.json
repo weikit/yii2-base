@@ -17,9 +17,7 @@
         "source": "https://github.com/weikit/yii2-base"
     },
     "require": {
-        "yiisoft/yii2": "*",
-
-        "danielstjules/stringy": "~2.2"
+        "yiisoft/yii2": "*"
     },
     "autoload": {
         "files": ["helpers.php"],
