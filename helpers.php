@@ -1,5 +1,4 @@
 <?php
-use Yii;
 use yii\helpers\Html;
 
 /**
@@ -18,7 +17,7 @@ if (! function_exists('app')) {
      */
     function app()
     {
-        return Yii::$app;
+        return \Yii::$app;
     }
 }
 
@@ -34,7 +33,7 @@ if (! function_exists('user')) {
      */
     function user()
     {
-        return Yii::$app->user;
+        return \Yii::$app->user;
     }
 }
 
@@ -53,9 +52,9 @@ if (! function_exists('identity')) {
     function identity($user = null)
     {
         if ($user !== null) {
-            Yii::$app->user->setIdentity($user);
+            \Yii::$app->user->setIdentity($user);
         }
-        return Yii::$app->user->identity;
+        return \Yii::$app->user->identity;
     }
 }
 
@@ -70,7 +69,7 @@ if (! function_exists('request')) {
      */
     function request()
     {
-        return Yii::$app->request;
+        return \Yii::$app->request;
     }
 }
 
@@ -86,7 +85,7 @@ if (! function_exists('response')) {
      */
     function response()
     {
-        return Yii::$app->response;
+        return \Yii::$app->response;
     }
 }
 
@@ -102,7 +101,7 @@ if (! function_exists('formatter')) {
      */
     function formatter()
     {
-        return Yii::$app->formatter;
+        return \Yii::$app->formatter;
     }
 }
 
