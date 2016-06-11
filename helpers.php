@@ -1,12 +1,115 @@
 <?php
+use Yii;
 use yii\helpers\Html;
+
+/**
+ * 定义一些常用函数和简化Yii的常用方法
+ */
+
+if (! function_exists('app')) {
+    /**
+     * Yii::$app简化函数
+     *
+     * ```php
+     * app(); // 返回Yii::$app
+     * ```
+     *
+     * @return \yii\console\Application|\yii\web\Application
+     */
+    function app()
+    {
+        return Yii::$app;
+    }
+}
+
+if (! function_exists('user')) {
+    /**
+     * Yii::$app->user简化函数
+     *
+     * ```php
+     * user(); // 返回Yii::$app->user;
+     * ```
+     *
+     * @return mixed|\yii\web\User
+     */
+    function user()
+    {
+        return Yii::$app->user;
+    }
+}
+
+if (! function_exists('identity')) {
+    /**
+     * Yii::$app->user->identity简化函数
+     *
+     * ```php
+     * identity(); // 返回Yii::$app->user->identity;
+     * ```
+     *
+     * @return null|\yii\web\IdentityInterface
+     */
+    function identity()
+    {
+        return Yii::$app->user->identity;
+    }
+}
+
+if (! function_exists('request')) {
+    /**
+     * Yii::$app->request简化函数
+     *
+     * ```php
+     * request(); // 返回Yii::$app->user;
+     * ```
+     * @return \yii\console\Request|\yii\web\Request
+     */
+    function request()
+    {
+        return Yii::$app->request;
+    }
+}
+
+if (! function_exists('response')) {
+    /**
+     * Yii::$app->response
+     *
+     * ```php
+     * response(); // 返回Yii::$app->response;
+     * ```
+     * @return \yii\console\Request|\yii\web\Request
+     */
+    function response()
+    {
+        return Yii::$app->response;
+    }
+}
+
+if (! function_exists('formatter')) {
+    /**
+     * Yii::$app->formatter
+     *
+     * ```php
+     * formatter(); // 返回Yii::$app->formatter;
+     * ```
+     *
+     * @return \yii\i18n\Formatter
+     */
+    function formatter()
+    {
+        return Yii::$app->formatter;
+    }
+}
 
 if (! function_exists('e')) {
     /**
-     * Escape HTML entities in a string.
+     * Html::encode简化函数
+     *
+     * ```php
+     * e('string');
+     * ```
      *
      * @param $value
-     * @param bool|true $doubleEncode
+     * @param bool $doubleEncode
      * @return string
      */
     function e($value, $doubleEncode = true)
@@ -17,9 +120,9 @@ if (! function_exists('e')) {
 
 if (! function_exists('trait_uses_recursive')) {
     /**
-     * Returns all traits used by a trait and its traits.
+     * 返回类所使用的(包括继承的)trait
      *
-     * @param  string  $trait
+     * @param string $trait
      * @return array
      */
     function trait_uses_recursive($trait)
@@ -31,18 +134,5 @@ if (! function_exists('trait_uses_recursive')) {
         }
 
         return $traits;
-    }
-}
-
-if (! function_exists('value')) {
-    /**
-     * Return the default value of the given value.
-     *
-     * @param  mixed  $value
-     * @return mixed
-     */
-    function value($value)
-    {
-        return $value instanceof Closure ? $value() : $value;
     }
 }
