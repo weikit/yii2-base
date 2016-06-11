@@ -44,12 +44,17 @@ if (! function_exists('identity')) {
      *
      * ```php
      * identity(); // 返回Yii::$app->user->identity;
+     * identity($user) // Yii::$app->user->setIdentity($user);
      * ```
      *
+     * @param null $user
      * @return null|\yii\web\IdentityInterface
      */
-    function identity()
+    function identity($user = null)
     {
+        if ($user !== null) {
+            Yii::$app->user->setIdentity($user);
+        }
         return Yii::$app->user->identity;
     }
 }
@@ -76,7 +81,8 @@ if (! function_exists('response')) {
      * ```php
      * response(); // 返回Yii::$app->response;
      * ```
-     * @return \yii\console\Request|\yii\web\Request
+     *
+     * @return \yii\console\Response|\yii\web\Response
      */
     function response()
     {
