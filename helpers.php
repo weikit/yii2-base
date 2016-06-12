@@ -89,6 +89,33 @@ if (! function_exists('response')) {
     }
 }
 
+if (! function_exists('cache')) {
+    /**
+     * Yii::$app->cache
+     *
+     * ```php
+     * cache(); // 返回Yii::$app->cache;
+     * cache('xxx') // 返回Yii::$app->cache->get('xxx');
+     * cache('xxx', 'yyy', 3600) // 返回Yii::$app->cache->set('xxx', 'yyy', 3600);
+     * ```
+     *
+     * @param null $key
+     * @param null $value
+     * @param int $duration
+     * @return bool|mixed|\yii\caching\Cache
+     */
+    function cache($key = null, $value = null, $duration = 0)
+    {
+        if ($key !== null) {
+            if ($value === null) {
+                return \Yii::$app->cache->get($key);
+            }
+            return \Yii::$app->cache->set($key, $value, $duration);
+        }
+        return \Yii::$app->cache;
+    }
+}
+
 if (! function_exists('formatter')) {
     /**
      * Yii::$app->formatter
