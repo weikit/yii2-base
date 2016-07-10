@@ -89,6 +89,31 @@ if (! function_exists('response')) {
     }
 }
 
+if (! function_exists('db')) {
+    /**
+     * Yii::$app->db
+     *
+     * ```php
+     * db(); // 返回Yii::$app->db;
+     *
+     * // 返回\Yii::$app->db->createCommand(SELECT * FROM {{%tableName}} WHERE a=:a', [':a' => 1]);
+     * // 该类型可以直接执行sql语句并可以调用\yii\db\Command下的类方法
+     * db('SELECT * FROM {{%tableName}} WHERE a=:a', [':a' => 1]);
+     * ```
+     *
+     * @param null $sql
+     * @param array $params
+     * @return \yii\db\Command|\yii\db\Connection
+     */
+    function db($sql = null, $params = [])
+    {
+        if ($sql !== null) {
+            return \Yii::$app->db->createCommand($sql, $params);
+        }
+        return \Yii::$app->db;
+    }
+}
+
 if (! function_exists('cache')) {
     /**
      * Yii::$app->cache
@@ -102,15 +127,16 @@ if (! function_exists('cache')) {
      * @param null $key
      * @param null $value
      * @param int $duration
+     * @param yii\caching\Dependency $dependency
      * @return bool|mixed|\yii\caching\Cache
      */
-    function cache($key = null, $value = null, $duration = 0)
+    function cache($key = null, $value = null, $duration = 0, $dependency = null)
     {
         if ($key !== null) {
             if ($value === null) {
                 return \Yii::$app->cache->get($key);
             }
-            return \Yii::$app->cache->set($key, $value, $duration);
+            return \Yii::$app->cache->set($key, $value, $duration, $dependency);
         }
         return \Yii::$app->cache;
     }
@@ -147,6 +173,19 @@ if (! function_exists('e')) {
     function e($value, $doubleEncode = true)
     {
         return Html::encode($value, $doubleEncode);
+    }
+}
+
+if (! function_exists('value')) {
+    /**
+     * Return the default value of the given value.
+     *
+     * @param  mixed  $value
+     * @return mixed
+     */
+    function value($value)
+    {
+        return $value instanceof Closure ? $value() : $value;
     }
 }
 

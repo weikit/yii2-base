@@ -59,7 +59,7 @@ class SerializeBehavior extends Behavior
     {
         return [
             BaseActiveRecord::EVENT_BEFORE_INSERT => 'evaluateBeforeInsertAttributes',
-            BaseActiveRecord::EVENT_BEFORE_INSERT => 'evaluateBeforeUpdateAttributes',
+            BaseActiveRecord::EVENT_BEFORE_UPDATE => 'evaluateBeforeUpdateAttributes',
             BaseActiveRecord::EVENT_AFTER_FIND => 'evaluateAfterFindAttributes'
         ];
     }
@@ -139,17 +139,17 @@ class SerializeBehavior extends Behavior
      * 解码成数组
      *
      * @param $value
-     * @return array
+     * @return mixed
      */
     protected function decode($value)
     {
         switch($this->encodeType) {
             case self::ENCODE_TYPE_SERIALIZE:
-                return unserialize($value) ?: [];
+                return unserialize($value);
             case self::ENCODE_TYPE_JSON:
-                return json_decode($value, true) ?: [];
+                return json_decode($value, true);
             default:
-                return (array)$value;
+                return $value;
         }
     }
 }
